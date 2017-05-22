@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MobileEngagement</string>
+
+    <!-- AzME Permission rationales -->
+    <string name="write_external_storage_rationale">Write external storage rationale</string>
+    <string name="access_coarse_location_rationale">Access coarse location rationale</string>
+    <string name="access_fine_location_rationale">Access fine location rationale</string>
+
+    <!-- Preferences -->
+    <string name="pref_main_title">Main Settings</string>
+        <string name="pref_main_test_title">Test</string>
+        <string name="pref_main_test_summary">One of the app settings</string>
+
+    <!-- AzME Preferences -->
+    <string name="azme_pref_title">Engagement Settings</string>
+        <string name="azme_pref_enabled_title">Enabled</string>
+        <string name="azme_pref_enabled_summary">Enable or disable mobile engagement services</string>
+    <string name="azme_pref_location_title">Location reporting</string>
+        <string name="azme_pref_location_lazyarea_title">Lazy area report</string>
+        <string name="azme_pref_location_lazyarea_summary">Wifi location used for statistics</string>
+        <string name="azme_pref_location_realtime_title">Realtime report</string>
+        <string name="azme_pref_location_realtime_summary">Wifi location used just for geo-fencing</string>
+        <string name="azme_pref_location_fine_title">GPS report</string>
+        <string name="azme_pref_location_fine_summary">May shorten the battery lifespan</string>
+        <string name="azme_pref_location_background_title">Background report</string>
+        <string name="azme_pref_location_background_summary">Reports are sent when the app is in the background as well</string>
+    <string name="azme_header_title">Engagement Settings</string>
+        <string name="azme_header_summary">Configure the services for mobile engagement</string>
+
+</resources>

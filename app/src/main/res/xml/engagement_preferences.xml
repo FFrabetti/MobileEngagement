@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/azme_pref_title">
+        <CheckBoxPreference
+            android:key="engagement:enabled"
+            android:title="@string/azme_pref_enabled_title"
+            android:summary="@string/azme_pref_enabled_summary"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/azme_pref_location_title">
+        <CheckBoxPreference
+            android:key="engagement:locationReport:lazyArea"
+            android:dependency="engagement:enabled"
+            android:title="@string/azme_pref_location_lazyarea_title"
+            android:summary="@string/azme_pref_location_lazyarea_summary"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="engagement:locationReport:realTime"
+            android:dependency="engagement:enabled"
+            android:title="@string/azme_pref_location_realtime_title"
+            android:summary="@string/azme_pref_location_realtime_summary"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="engagement:locationReport:realTime:fine"
+            android:dependency="engagement:locationReport:realTime"
+            android:title="@string/azme_pref_location_fine_title"
+            android:summary="@string/azme_pref_location_fine_summary"
+            android:defaultValue="false"/>
+        <CheckBoxPreference
+            android:key="engagement:locationReport:realTime:background"
+            android:dependency="engagement:locationReport:realTime"
+            android:title="@string/azme_pref_location_background_title"
+            android:summary="@string/azme_pref_location_background_summary"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>

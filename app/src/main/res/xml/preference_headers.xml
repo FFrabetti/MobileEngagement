@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+    <header
+        android:fragment="it.getconnected.filippo.meapp.fragments.SettingsFragment"
+        android:title="App settings"
+        android:summary="Main settings">
+        <extra android:name="settings" android:value="main" />
+    </header>
+    <header
+        android:fragment="it.getconnected.filippo.meapp.fragments.SettingsFragment"
+        android:title="@string/azme_header_title"
+        android:summary="@string/azme_header_summary">
+        <extra android:name="settings" android:value="engagement" />
+    </header>
+</preference-headers>
