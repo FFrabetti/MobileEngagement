@@ -1,6 +1,11 @@
 package it.getconnected.filippo.me;
 
+import java.lang.reflect.Method;
+
 import it.getconnected.filippo.me.services.MEService;
+import it.getconnected.filippo.me.services.MEServiceModule;
+import it.getconnected.filippo.me.utils.OptModule;
+import it.getconnected.filippo.me.utils.OptionalModule;
 
 /**
  * Static class used as a global access point for the current Mobile Engagement Service (MEService).
@@ -71,4 +76,44 @@ public class MEClient {
     private MEClient() {
         /* It prevents initialization */
     }
+
+    /**
+     * Allows you to get a {@code ServiceModule} optionally provided by the current
+     * Engagement Service from its class descriptor. This method works even if the module
+     * you are looking for does not appear in the {@link MEService} interface, though
+     * you can use it to retrieve standard engagement services as well.
+     * <p>It uses reflection to invoke, if present, a method of the current Service
+     * with no parameters and with the given return type. In all the other cases
+     * (including the one of no Service being set), it returns an empty {@link OptionalModule}.</p>
+     * <p>By not providing the requested ServiceModule directly, it forces the user
+     * to check the returned value ({@link OptionalModule#isPresent()} before using it.
+     * This is a great improvement from the dangerous and confusing use of null pointers
+     * to indicate the absence of a particular service module.</p>
+     *
+     * @param type the class descriptor of the requested ServiceModule
+     * @param <T> the type of the returned ServiceModule
+     * @return an OptionalModule containing the requested service or an empty one if
+     * the module or the Service itself were not available
+     */
+    public static <T extends MEServiceModule> OptionalModule<T> getServiceModule(Class<T> type) {
+        if(!isInitialized())
+            return OptModule.empty();
+
+        T result = null;
+        try {
+            for(Method m : serviceInstance.getClass().getDeclaredMethods()) {
+                // m.getParameterCount() -> yet to be added...
+                if(m.getParameterTypes().length==0 && m.getReturnType().equals(type)) {
+                    result = type.cast(m.invoke(serviceInstance));
+                    break;
+                }
+            }
+        } catch(Exception e) { }
+
+        if(result == null)
+            return OptModule.empty();
+
+        return new OptModule<>(result);
+    }
+
 }
