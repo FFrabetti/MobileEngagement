@@ -7,7 +7,7 @@ import android.os.Bundle;
  * for the same key is provided.
  * <br>App-info are mainly used for personalizing notifications content.
  */
-public interface MEAppInfoSender {
+public interface MEAppInfoSender extends MEServiceModule {
 
     public void sendAppInfo(Bundle appInfo);
 }

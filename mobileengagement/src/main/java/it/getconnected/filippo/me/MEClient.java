@@ -21,7 +21,8 @@ public class MEClient {
     private static MEService serviceInstance = null;
 
     /**
-     * Sets a new MEService to be used from now on and to be stored as a static field.
+     * Sets a new MEService to be used from now on and starts it after
+     * shutting down the previous one, if present.
      *
      * @param service the new Mobile Engagement Service
      * @return the newly set Mobile Engagement Service
@@ -31,8 +32,37 @@ public class MEClient {
         if(service == null)
             throw new IllegalArgumentException("service");
 
-        serviceInstance = service;
+        if(service != serviceInstance) {
+            stop();
+            serviceInstance = service;
+            start();
+        }
+
         return serviceInstance;
+    }
+
+    /**
+     * Starts a previously set Mobile Engagement Service.
+     * <p>This operation needs to be done just after manually stopping the service,
+     * in all the other cases it is taken care of.</p>
+     *
+     * @see MEService#startService()
+     */
+    public static void start() {
+        if(isInitialized())
+            serviceInstance.startService();
+    }
+
+    /**
+     * Stops a previously set Mobile Engagement Service.
+     * <p>If you are switching to a different Service, {@link #newService(MEService)}
+     * takes care of doing start/stop operations on both services at the right time.</p>
+     *
+     * @see MEService#stopService()
+     */
+    public static void stop() {
+        if(isInitialized())
+            serviceInstance.stopService();
     }
 
     /**
@@ -61,7 +91,7 @@ public class MEClient {
     }
 
     /**
-     * Returns the current value of the static MEService field without performing any checks.
+     * Returns the current Engagement Service without performing any checks.
      * Safe variant of {@code getService()}: if no instance has been set it simply returns null
      * without throwing an exception. For this reason you should always check the returned value
      * or call {@link #isInitialized()} first.

@@ -6,7 +6,7 @@ import android.os.Bundle;
 /**
  * Interface that handles user's navigation among activities and use-paths.
  */
-public interface MEActivityTracker {
+public interface MEActivityTracker extends MEServiceModule {
 
     /**
      * Sends the indication of an activity being started,

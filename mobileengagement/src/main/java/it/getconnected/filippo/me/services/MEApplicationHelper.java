@@ -13,7 +13,7 @@ import it.getconnected.filippo.me.helpers.MEApplication;
  *
  * @see MEApplication
  */
-public interface MEApplicationHelper {
+public interface MEApplicationHelper extends MEServiceModule {
 
     /**
      * Checks whether the current process is the one running the Engagement service or not.
